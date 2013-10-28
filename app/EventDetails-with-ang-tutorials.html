@@ -14,59 +14,62 @@
     <div class="container">
         <div class="navbar">
             <div class="navbar-inner">
-                <ul class="nav">
-                    <li><a href="/app/NewEvent.html">Create Event</a></li>
-                </ul>
+                <ul class="nav"></ul>
             </div>
         </div>
         <div ng-controller="EventController" style="padding: 2%;">
             <img ng-src="{{event.imageUrl}}" class="img-responsive" width="300" />
             <div class="row">
                 <div class="col-xs-12">
+                    
+                    <!-- set style or class
+                    <h2 ng-style="mystyle" ng-bind="event.name"></h2>
+                    <h2 ng-class="myclass">foo</h2>-->
+
+                    <!--shows 3 different ways to use directives
+                    <h2 ng-bind="event.name"></h2>
                     <h2>{{event.name}}</h2>
+                    <h2 ng-bind-template="{{event.name}} {{event.date}}"></h2>-->
+
+                    <h2>{{event.name}} {{event.date}}</h2>
                 </div>
             </div>
-                        
+            
+            <!-- wont parse whats inside the div
+            <div ng-non-bindable>{{1 + 2}}</div>-->
+
+            <!-- disabled button...set true/false in controller
+            <button class="btn" ng-disabled>Disabled</button>-->
+
+
+            <!-- using sanitize to show it strip out style tag
+            <div ng-bind-html="snippet">some title</div>
+            <div ng-bind-html-unsafe="snippet">some title</div>-->
+
+            <!--show/hide...set in the controller
+            <h2 ng-show="boolValue">Show This</h2>
+            <h2 ng-hide="boolValue">Hide This</h2>-->
+            
             <div class="row">
                 <div class="col-xs-3">
-                    <div><strong>Date:</strong> {{event.date | date:'medium'}}</div>
-                    <div><strong>Time:</strong> {{event.time}}</div>
-                    <div><strong>Price:</strong> {{34 | currency}}</div>
+                    <div>
+                        <strong>Date:</strong>{{event.date}}</div>
+                    <div>
+                        <strong>Time:</strong>{{event.time}}</div>
                 </div>
                 <div class="col-xs-4">
                     <address>
                         <strong>Address:</strong>
                         <br/>{{event.location.address}}
-                        <br/>{{event.location.city}}, {{event.location.province}}
-                    </address>
+                        <br>{{event.location.city}}, {{event.location.province}}</address>
                 </div>
             </div>
-
-            
-
             <hr />
             <h3>Sessions</h3>
-            <h5 class="pull-left">Order By:</h5>
-            <div class="col-lg-3">
-                <select ng-model="sortorder" class="form-control input-sm">
-                    <option selected value="name">Name</option>
-                    <option value="-upVoteCount">Votes</option>
-                </select>
-            </div>
-
-            <h5 class="pull-left">Show:</h5>
-            <div class="col-lg-3">
-                <select ng-model="query.level" class="form-control">
-                    <option selected value="">All</option>
-                    <option selected value="introductory">Introductory</option>
-                    <option selected value="intermediate">Intermediate</option>
-                    <option selected value="advanced">Advanced</option>
-                </select>
-            </div>
-            <ul class="thumbnails list-unstyled" style="margin-top: 3%;">
-                <li ng-repeat="session in event.sessions | orderBy:sortorder | limitTo:2 | filter:query">
-                    <div class="row pull-left session">
-                        <div class="col-xs-1 well votingWidget">
+            <ul class="thumbnails list-unstyled">
+                <li ng-repeat="session in event.sessions">
+                    <div class="row session">
+                        <div class="col-md-1 well votingWidget">
                             <div class="votingButton cursor-pointer" ng-click="upVoteSession(session)">
                                 <span class="glyphicon glyphicon-chevron-up"></span>
                             </div>
@@ -80,7 +83,7 @@
                         <div class="well col-xs-9">
                             <h4 class="well-title">{{session.name}}</h4>
                             <h6 style="margin-top: -10px;">{{session.creatorName}}</h6>
-                            <span>Duration: {{session.duration | durations}}</span>
+                            <span>Duration: {{session.duration}}</span>
                             <br>
                             <span>Level: {{session.level}}</span>
                             <p>{{session.abstract}}</p>
@@ -97,7 +100,6 @@
     <script src="lib/angular/angular-sanitize.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/EventController.js"></script>
-    <script src="js/filters.js"></script>
 </body>
 
 </html>
