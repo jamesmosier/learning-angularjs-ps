@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eventsApp">
+    
+    <head>
+        <title>Event Registration | Angular x PluralSight</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/app.css" rel="stylesheet" media="screen">
+        <!-- To start server... cd desktop/tuts/ang/angular-seed-master THEN scripts/web-server.js-->
+    </head>
+<body>
+
+	 <div class="container" ng-controller="EditProfileController">
+	 	<form name="profileForm">
+	 		<div class="row">
+	 			<div class="col-xs-3">
+	 				<img src="/img/profile/jpg" />
+	 			</div>
+	 			<div class="col-xs-3">
+	 				<fieldset>
+	 					<label for="userName">User Name:</label>
+	 					<input focus id="userName" required ng-pattern="/^[-A-Za-z0-9]{2,20}$/" type="text" placeholder="Username" ng-model="user.userName">
+	 					<label for="password">Password:</label>
+	 					<input id="password" required type="password" placeholder="Password" ng-model="user.password" />
+	 				</fieldset>
+	 				<div style="margin-top: 15px;">
+	 					<fieldset>
+	 						<label for="name">Name:</label>
+	 						<input id="name" type="text" placeholder="Name" ng-model="user.name" />
+	 						<label for="emailAddress">Email:</label>
+	 						<input id="emailAddress" type="email" placeholder="Email Address" ng-model="user.emailAddress" />
+	 					</fieldset>
+	 				</div>
+	 			</div>
+	 		</div>
+	 		<div class="row">
+	 			<div class="col-md-6 col-md-offset-3">
+	 				<label for="bio">Bio:</label>
+	 				<textarea id="bio" rows="6" style="width: 97%; color: #52575c" placeholder="Bio" ng-model="user.bio"></textarea>
+	 			</div>
+	 		</div>
+	 	</form>
+	 </div>
+
+
+    <script src="lib/jquery-1.10.2.min.js"></script>
+    <script src="lib/underscore.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-sanitize.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/EventController.js"></script>
+    <script src="js/services/EventData.js"></script>
+    <script src="js/filters.js"></script>
+</body>
+</html>
